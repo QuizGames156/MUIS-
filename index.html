@@ -158,7 +158,7 @@
 
 <section id="chat" class="screen hide"><div class="top"><button class="icon" onclick="go('matches')">‹</button><div class="brand">NIL<i>O</i></div><span></span></div><div class="section" style="text-align:center;padding-top:70px"><h2>Одоогоор чат алга</h2><div class="muted">Match болсон хэрэглэгчтэй чат энд нээгдэнэ.</div></div></section>
 
-<section id="me" class="screen hide"><div class="top"><div class="brand">NIL<i>O</i></div><button class="icon">⚙</button></div><div class="me"><div class="meavatar">👨🏻</div><h2>NILO User <span class="verified">●</span></h2><div class="muted">МУИС · Verified Student</div><button class="secondary" style="width:70%;margin-top:18px">Профайлыг засах</button><div class="stats"><div><b>12</b><span class="muted">Likes</span></div><div><b>8</b><span class="muted">Matches</span></div><div><b>0</b><span class="muted">Болзоо</span></div></div><div class="menu"><div>👑　NILO Plus　›</div><div>🎓　Campus Rank　›</div><div>⚙　Тохиргоо　›</div><div>🛡　Нууцлал　›</div><div>🚫　Blocked users　›</div><div>❓　Тусламж　›</div></div></div></section>
+<section id="me" class="screen hide"><div class="top"><div class="brand">NIL<i>O</i></div><button class="icon">⚙</button></div><div id="realProfile" class="me"><div class="muted" style="padding-top:80px">Профайл ачаалж байна...</div></div></section>
 
 <nav id="nav" class="nav hide"><button class="on" onclick="go('discover');navOn(this)"><b>🔥</b>Discover</button><button onclick="go('matches');navOn(this)"><b>♡</b>Matches</button><button onclick="go('chat');navOn(this)"><b>◌</b>Chat</button><button onclick="go('me');navOn(this)"><b>●</b>Profile</button></nav>
 
@@ -349,7 +349,7 @@ function go(id){
  screens.forEach(x=>document.getElementById(x)?.classList.add('hide'));
  const target=document.getElementById(id);if(target)target.classList.remove('hide');
  nav.classList.toggle('hide',id==='match');scrollTo(0,0);
- if(id==='discover')loadRealDiscover();if(id==='profile')loadOwnProfile();
+ if(id==='discover')loadRealDiscover();if(id==='me')loadOwnProfile();
 }
 function navOn(x){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));x.classList.add('on')}
 (async()=>{try{const u=(await NILO_DB.auth.getUser()).data.user;if(!u)return;const p=await NILO_DB.from('profiles').select('status').eq('id',u.id).maybeSingle();if(p.data?.status==='approved')enterApp()}catch(e){}})();
