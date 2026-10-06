@@ -164,7 +164,16 @@
 
 <div id="dateModal" class="modal hide" onclick="if(event.target===this)this.classList.add('hide')"><div class="sheet"><h2>💌 Болзоонд урих</h2><div class="muted">Ямар болзоо санал болгох вэ?</div><div class="grid" style="margin-top:15px"><button>☕<br>Кофе</button><button>🎬<br>Кино</button><button>🚶<br>Алхах</button><button>🍜<br>Хоол</button><button>🎮<br>Тоглох</button><button>✨<br>Бусад</button></div><button class="primary" onclick="dateModal.classList.add('hide');alert('Болзооны санал илгээгдлээ 💌')">Санал илгээх</button><button class="secondary" onclick="dateModal.classList.add('hide')">Болих</button></div></div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 <script>
+if (!window.NILO_CONFIG || !window.NILO_CONFIG.SUPABASE_URL || !window.NILO_CONFIG.SUPABASE_ANON_KEY) {
+  throw new Error('NILO_CONFIG is missing. Check config.js');
+}
+const NILO_DB = window.supabase.createClient(
+  window.NILO_CONFIG.SUPABASE_URL,
+  window.NILO_CONFIG.SUPABASE_ANON_KEY
+);
 const screens=['discover','profile','match','matches','chat','me'];
 
 const $=id=>document.getElementById(id);
